@@ -1,0 +1,81 @@
+---
+title: "Machine learning"
+author: "rachel noireau"
+date: "10/02/2020"
+output: html_document
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introduction
+
+The aim of this study is to crate a model wich is able to clasifie
+
+
+# import library
+```{r echo=TRUE, message=FALSE}
+#library(ggplot2)
+library(tidyverse)
+library(magrittr)
+library(lattice)
+library(caret)
+```
+
+# get data
+```{r echo=TRUE}
+test <- read.csv("Z:\\pml-testing.csv", na.strings=c("NA","#DIV/0!", "")) %>% #delect what is not a value
+  select_if(function(x) !(all(is.na(x)) | all(x==""))) %>% 
+  select(-c("new_window", "problem_id", "X")) %>% 
+  mutate_if(is.character, as.factor) %>%
+  na.omit()
+
+training <- read.csv("Z:\\pml-training.csv", na.strings=c("NA","#DIV/0!", "")) %>% 
+  select(c(colnames(test), "classe")) %>% 
+  mutate_if(is.character, as.factor) %>%
+  na.omit()
+```
+
+# exploration
+```{r echo=TRUE}
+summary(training)
+head(training)
+```
+
+# creation of the model
+
+### spend time by take au partition
+```{r echo=TRUE}
+set.seed(123) #to be reproducible
+part <- caret::createDataPartition(training$`classe`, p = 0.1)[[1]]  
+trainPartition <- training[ part,] 
+valid_1 <- training[-part,]
+```
+
+### using the random forest methode, and the cross validation 
+
+```{r echo=TRUE}
+model <- caret::train(classe ~ . , data = trainPartition, method = "rf", trControl=caret::trainControl(method = "CV", 10))
+```
+
+# prediction test
+
+```{r echo=TRUE}
+prediction <- predict(model, newdata = valid_1)
+```
+
+# compare the good result and what we found
+```{r echo=TRUE}
+confusionMatrix(valid_1$classe, prediction)
+```
+
+
+# With the test case
+### result get
+```{r echo=TRUE}
+predictionTraining <- predict(model, newdata = test)
+predictionTraining
+```
+
