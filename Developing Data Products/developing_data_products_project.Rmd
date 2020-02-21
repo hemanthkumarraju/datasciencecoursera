@@ -1,6 +1,6 @@
 ---
 title: "Developing Data Products Project"
-author: "Chi Zhang"
+author: "Hemanth Raju"
 date: "1/22/2020"
 output: ioslides_presentation
 ---
@@ -29,4 +29,4 @@ The following link directs to the application:
 https://chizhang1007.shinyapps.io/Developing_Data_Products_Project/
 
 The following link directs to the github respository for all the original files and codes:
-https://github.com/chizhang1007/developing_data_products_project
+https://github.com/hemanthkumarraju/datasciencecoursera/tree/master/Developing%20Data%20Products
