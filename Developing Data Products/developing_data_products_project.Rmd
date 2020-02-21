@@ -1,0 +1,32 @@
+---
+title: "Developing Data Products Project"
+author: "Chi Zhang"
+date: "1/22/2020"
+output: ioslides_presentation
+---
+
+## Introduction
+This reproducible pitch presentation is used to provide instructions and descriptions about the Shinny application I have developed. The app allows users to pick a specific state from the U.S., and the location of such a state will be presented on the map. It could help people identify and memorize the name, location, and shape of different states in America.
+
+## Method
+The tool I used to develop this application is Shiny. Shiny is a significant product of RStudio that allows users to develop web applicaiton framework using R. First, a Shiny application is created with two separate files, a ui.R and a sever.R file. The ui.R controls the user interface and the overall look of the application, and the server.R is used to contrl the functionality of our application.
+
+In my case, the ui.R defines three parts of the app, a title, a sidebar and a main part. The sidebar includes the documentation and the drop-down list for state selection. The main part includes the U.S. map for result demonstration. The server.R defines the input from the state selection and the output to highlight the specific state on the result map.
+
+## Code to draw the U.S. map
+This part will show the code I used to create the U.S. map.
+```{r, echo=TRUE, fig.dim=c(5,2.5)}
+library(ggplot2)
+library(maps)
+library(mapdata)
+states <- map_data("state") 
+ggplot(data = states) + geom_polygon(aes(x=long, y=lat, group=group),
+fill="white", color="black") + coord_fixed(1.3)
+```
+
+## Link to the app
+The following link directs to the application:
+https://chizhang1007.shinyapps.io/Developing_Data_Products_Project/
+
+The following link directs to the github respository for all the original files and codes:
+https://github.com/chizhang1007/developing_data_products_project
