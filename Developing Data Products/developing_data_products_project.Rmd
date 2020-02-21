@@ -26,7 +26,7 @@ fill="white", color="black") + coord_fixed(1.3)
 
 ## Link to the app
 The following link directs to the application:
-https://chizhang1007.shinyapps.io/Developing_Data_Products_Project/
+https://hemanth2711.shinyapps.io/Developing_Data_Products_Project/
 
 The following link directs to the github respository for all the original files and codes:
 https://github.com/hemanthkumarraju/datasciencecoursera/tree/master/Developing%20Data%20Products
